@@ -4,93 +4,82 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
+    <link rel="stylesheet" href="styles.css"/>
+    <title>lives-in-the.uk</title>
+    <meta name="description" content="The main site for LITUK."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Capriola&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
+    <div class="center">
+      <div class="header-container">
+        <span id="cycling-name" class="name">will</span>
+        <h1 class="static-header">.lives-in-the.uk</h1>
+      </div>
+      <p style="font-size: 48px;">Free subdomains that say you know what a chippy is.</p>
+      <p>(You don't have to live in the UK to get one.)</p>
+      <hr>
+      <a href="https://github.com/stovonson/lituk-register" class="button">Get yours!</a>
+    </div>
+    <p class="stovonson">&copy; 2025 Stovonson</p>
+    <script>
+      const names = ["will", "john", "george", "thomas", "arthur", "james", "charles"];
+      let index = 0;
+      const el = document.getElementById("cycling-name");
+      const staticHeader = document.querySelector(".static-header");
+      const headerContainer = document.querySelector(".header-container");
+
+      // Pre-calculate the maximum width for the header container
+      let maxWidth = 0;
+      const tempSpan = document.createElement("span");
+      tempSpan.style.fontSize = "72px";
+      tempSpan.style.fontFamily = '"Capriola", sans-serif';
+      tempSpan.style.visibility = "hidden";
+      tempSpan.style.position = "absolute";
+      document.body.appendChild(tempSpan);
+      names.forEach(name => {
+        tempSpan.textContent = name;
+        maxWidth = Math.max(maxWidth, tempSpan.offsetWidth);
+      });
+      document.body.removeChild(tempSpan);
+      const staticHeaderWidth = staticHeader.offsetWidth;
+      headerContainer.style.width = `${maxWidth + staticHeaderWidth + 6}px`;
+
+      // Ensure font is loaded before starting animation
+      document.fonts.ready.then(() => {
+        function cycleName() {
+          // Fade out and slide out
+          el.style.opacity = 0;
+          el.style.transform = "translateX(-15px)"; // Reduced distance
+          staticHeader.style.transform = "translateX(8px)"; // Reduced distance
+          staticHeader.style.opacity = 0.8;
+
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              // Update text and prepare to slide in
+              index = (index + 1) % names.length;
+              el.textContent = names[index];
+              el.style.transform = "translateX(15px)";
+              el.style.opacity = 0;
+              staticHeader.style.transform = "translateX(-8px)";
+              staticHeader.style.opacity = 0.8;
+
+              requestAnimationFrame(() => {
+                setTimeout(() => {
+                  // Slide in
+                  el.style.transform = "translateX(0)";
+                  el.style.opacity = 1;
+                  staticHeader.style.transform = "translateX(0)";
+                  staticHeader.style.opacity = 1;
+                }, 50);
+              });
+            }, 350); // Slightly reduced for smoother flow
+          });
+        }
+
+        setInterval(cycleName, 2000);
+      });
+    </script>
   </body>
 </html>
