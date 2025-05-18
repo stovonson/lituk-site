@@ -3,13 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link rel="stylesheet" href="styles.css"/>
     <title>lives-in-the.uk</title>
     <meta name="description" content="The main site for LITUK."/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Capriola&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <div class="center">
@@ -17,69 +16,12 @@
         <span id="cycling-name" class="name">will</span>
         <h1 class="static-header">.lives-in-the.uk</h1>
       </div>
-      <p style="font-size: 48px;">Free subdomains that say you know what a chippy is.</p>
-      <p>(You don't have to live in the UK to get one.)</p>
+      <p class="tagline" style="font-size: 48px;">Free subdomains that say you know what a chippy is.</p>
+      <p style="margin-top: 10px;">(Available worldwide.)</p>
       <hr>
       <a href="https://github.com/stovonson/lituk-register" class="button">Get yours!</a>
     </div>
-    <p class="stovonson">&copy; 2025 Stovonson</p>
-    <script>
-      const names = ["will", "john", "george", "thomas", "arthur", "james", "charles"];
-      let index = 0;
-      const el = document.getElementById("cycling-name");
-      const staticHeader = document.querySelector(".static-header");
-      const headerContainer = document.querySelector(".header-container");
-
-      // Pre-calculate the maximum width for the header container
-      let maxWidth = 0;
-      const tempSpan = document.createElement("span");
-      tempSpan.style.fontSize = "72px";
-      tempSpan.style.fontFamily = '"Capriola", sans-serif';
-      tempSpan.style.visibility = "hidden";
-      tempSpan.style.position = "absolute";
-      document.body.appendChild(tempSpan);
-      names.forEach(name => {
-        tempSpan.textContent = name;
-        maxWidth = Math.max(maxWidth, tempSpan.offsetWidth);
-      });
-      document.body.removeChild(tempSpan);
-      const staticHeaderWidth = staticHeader.offsetWidth;
-      headerContainer.style.width = `${maxWidth + staticHeaderWidth + 6}px`;
-
-      // Ensure font is loaded before starting animation
-      document.fonts.ready.then(() => {
-        function cycleName() {
-          // Fade out and slide out
-          el.style.opacity = 0;
-          el.style.transform = "translateX(-15px)"; // Reduced distance
-          staticHeader.style.transform = "translateX(8px)"; // Reduced distance
-          staticHeader.style.opacity = 0.8;
-
-          requestAnimationFrame(() => {
-            setTimeout(() => {
-              // Update text and prepare to slide in
-              index = (index + 1) % names.length;
-              el.textContent = names[index];
-              el.style.transform = "translateX(15px)";
-              el.style.opacity = 0;
-              staticHeader.style.transform = "translateX(-8px)";
-              staticHeader.style.opacity = 0.8;
-
-              requestAnimationFrame(() => {
-                setTimeout(() => {
-                  // Slide in
-                  el.style.transform = "translateX(0)";
-                  el.style.opacity = 1;
-                  staticHeader.style.transform = "translateX(0)";
-                  staticHeader.style.opacity = 1;
-                }, 50);
-              });
-            }, 350); // Slightly reduced for smoother flow
-          });
-        }
-
-        setInterval(cycleName, 2000);
-      });
-    </script>
+    <p class="stovonson">&copy; 2025 <a href="https://stovonson.in" target="_blank">Stovonson</a></p>
+    <script src="scripts.js"></script>
   </body>
 </html>
