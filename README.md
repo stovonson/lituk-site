@@ -1,5 +1,3 @@
-![Favicon/Logo](favicon.svg)
-
 # lives-in-the.uk (LITUK)
 
 lives-in-the.uk is a free subdomain service that tells everyone you know what a chippy is.
