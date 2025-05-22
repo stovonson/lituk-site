@@ -1,39 +1,28 @@
-const names = ["will", "john", "george", "thomas", "arthur", "james", "charles"];
-let index = 0;
-const el = document.getElementById("cycling-name");
-const staticHeader = document.querySelector(".static-header");
+const animatedText = document.getElementById("animated-text");
 
-// Ensure font is loaded before starting animation
-document.fonts.ready.then(() => {
-  function cycleName() {
-    // Fade out and slide out
-    el.style.opacity = 0;
-    el.style.transform = "translateX(-15px)"; // Reduced distance
-    staticHeader.style.transform = "translateX(8px)"; // Reduced distance
-    staticHeader.style.opacity = 0.8;
+      const texts = [
+        "tom.lives-in-the.uk",
+        "will.lives-in-the.uk",
+        "john.lives-in-the.uk",
+        "steve.lives-in-the.uk",
+        "jen.lives-in-the.uk",
+        "charles.lives-in-the.uk",
+        "katie.lives-in-the.uk",
+        "ryan.lives-in-the.uk",
+        "luke.lives-in-the.uk"
+      ];
 
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        // Update text and prepare to slide in
-        index = (index + 1) % names.length;
-        el.textContent = names[index];
-        el.style.transform = "translateX(15px)";
-        el.style.opacity = 0;
-        staticHeader.style.transform = "translateX(-8px)";
-        staticHeader.style.opacity = 0.8;
+      let currentIndex = 0;
 
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            // Slide in
-            el.style.transform = "translateX(0)";
-            el.style.opacity = 1;
-            staticHeader.style.transform = "translateX(0)";
-            staticHeader.style.opacity = 1;
-          }, 50);
-        });
-      }, 350); // Slightly reduced for smoother flow
-    });
-  }
+      function updateText() {
+        animatedText.classList.add("fade");
+        
+        setTimeout(() => {
+          currentIndex = (currentIndex + 1) % texts.length;
+          animatedText.textContent = texts[currentIndex];
+          
+          animatedText.classList.remove("fade");
+        }, 150);
+      }
 
-  setInterval(cycleName, 2000);
-});
+      setInterval(updateText, 2000);
