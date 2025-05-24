@@ -1,28 +1,30 @@
 const animatedText = document.getElementById("animated-text");
 
-      const texts = [
-        "tom.lives-in-the.uk",
-        "will.lives-in-the.uk",
-        "john.lives-in-the.uk",
-        "steve.lives-in-the.uk",
-        "jen.lives-in-the.uk",
-        "charles.lives-in-the.uk",
-        "katie.lives-in-the.uk",
-        "ryan.lives-in-the.uk",
-        "luke.lives-in-the.uk"
-      ];
+const texts = [
+  "tom",
+  "will",
+  "john",
+  "steve",
+  "jen",
+  "charles",
+  "katie",
+  "ryan",
+  "luke"
+];
 
-      let currentIndex = 0;
+let currentIndex = 0;
 
-      function updateText() {
-        animatedText.classList.add("fade");
-        
-        setTimeout(() => {
-          currentIndex = (currentIndex + 1) % texts.length;
-          animatedText.textContent = texts[currentIndex];
-          
-          animatedText.classList.remove("fade");
-        }, 150);
-      }
+function updateText() {
+  // Start slide out animation
+  animatedText.classList.add("slide-out");
 
-      setInterval(updateText, 2000);
+  setTimeout(() => {
+    currentIndex = (currentIndex + 1) % texts.length;
+    animatedText.textContent = texts[currentIndex];
+    
+    animatedText.classList.remove("slide-out");
+  }, 300);
+}
+
+// Start the animation cycle
+setInterval(updateText, 2500);

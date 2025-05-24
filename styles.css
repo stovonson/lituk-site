@@ -1,15 +1,13 @@
 body {
   margin: 0;
-  min-height: 100vh;
   background-color: antiquewhite;
   color: black;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-family: "Capriola", sans-serif;
   padding: 20px;
   box-sizing: border-box;
+  height: 100vh;
 }
 
 .center {
@@ -18,7 +16,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 15px;
+  padding: 25vh 0 0 0;
 }
 
 p {
@@ -28,7 +27,6 @@ p {
 
 hr {
   border: 0;
-  margin: 25px 0;
   width: 100%;
 }
 
@@ -37,7 +35,6 @@ hr {
   flex-direction: row;
   justify-content: center;
   gap: 10px;
-  margin-top: 10px;
 }
 
 a.button-reg {
@@ -52,7 +49,7 @@ a.button-reg {
 
 a.button-exa {
   border-radius: 25px;
-  font-size: 36px;
+  font-size: 32px;
   margin: 0;
   padding: 10px 20px;
   border: 5px solid black;
@@ -63,8 +60,8 @@ a.button-exa {
 .stovonson {
   position: absolute;
   text-align: center;
-  top: auto;
-  bottom: 10px;
+  top: 90vh;
+  bottom: 5vh;
   left: 0;
   right: 0;
   width: 100%;
@@ -76,25 +73,37 @@ a {
 }
 
 #container {
-  width: 100%;
+  width: 85%;
   height: 80pt;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
+  flex-direction: row;
+  justify-content: right;
+  align-items: right;
+  margin-bottom: 10px;
 }
 
 #animated-text {
   font-family: "Capriola", sans-serif;
   font-size: 80pt;
   text-align: center;
-  user-select: none;
-  opacity: 1;
-  transition: opacity 0.2s linear;
+  transform: translateX(0);
+  transition: transform 0.3s ease-in-out;
+  display: inline-block;
+  white-space: nowrap;
 }
 
-#animated-text.fade {
-  opacity: 0;
+#animated-text.slide-out {
+  transform: translateX(-300%);
+}
+
+#animated-text.slide-in {
+  transform: translateX(0);
+}
+
+#static-text {
+  font-family: "Capriola", sans-serif;
+  font-size: 80pt;
+  text-align: center;
 }
 
 @media (max-width: 850px) {
@@ -107,14 +116,20 @@ a {
   .buttons {
       flex-direction: column;
   }
-  a.button-reg {
-      margin-bottom: 10px;
-  }
-  a.button-exa {
-      margin-top: 10px;
+  #container {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      flex-direction: column;
   }
   #animated-text {
       font-size: 40pt;
+  }
+  #static-text {
+      font-size: 40pt;
+  }
+  .center {  
+      padding: 5vh 0 0 0;
   }
 }
 
@@ -123,6 +138,9 @@ a {
       font-size: 22px !important;
   }
   #animated-text {
+      font-size: 30pt;
+  }
+  #static-text {
       font-size: 30pt;
   }
 }
