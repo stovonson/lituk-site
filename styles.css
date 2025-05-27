@@ -58,14 +58,9 @@ a.button-exa {
 }
 
 .stovonson {
-  position: absolute;
   text-align: center;
-  top: 90vh;
-  bottom: 5vh;
-  left: 0;
-  right: 0;
-  width: 100%;
   font-size: 16px;
+  margin-top: 20px;
 }
 
 a {
