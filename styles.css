@@ -73,18 +73,18 @@ a {
 }
 
 #container {
-  width: 85%;
   height: 80pt;
   display: flex;
   flex-direction: row;
   justify-content: right;
   align-items: right;
   margin-bottom: 10px;
+  padding: 0 5px;
 }
 
 #animated-text {
   font-family: "Capriola", sans-serif;
-  font-size: 80pt;
+  font-size: 70pt;
   text-align: center;
   transform: translateX(0);
   transition: transform 0.3s ease-in-out;
@@ -102,7 +102,7 @@ a {
 
 #static-text {
   font-family: "Capriola", sans-serif;
-  font-size: 80pt;
+  font-size: 70pt;
   text-align: center;
 }
 
@@ -123,10 +123,10 @@ a {
       flex-direction: column;
   }
   #animated-text {
-      font-size: 40pt;
+      font-size: 35pt;
   }
   #static-text {
-      font-size: 40pt;
+      font-size: 35pt;
   }
   .center {  
       padding: 5vh 0 0 0;
@@ -138,9 +138,9 @@ a {
       font-size: 22px !important;
   }
   #animated-text {
-      font-size: 30pt;
+      font-size: 25pt;
   }
   #static-text {
-      font-size: 30pt;
+      font-size: 25pt;
   }
 }
