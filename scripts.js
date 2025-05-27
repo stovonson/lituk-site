@@ -6,7 +6,6 @@ const texts = [
   "john",
   "steve",
   "jen",
-  "charles",
   "katie",
   "ryan",
   "luke"
