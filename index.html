@@ -9,7 +9,173 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Capriola&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+      body {
+        margin: 0;
+        background-color: antiquewhite;
+        color: black;
+        align-items: center;
+        justify-content: center;
+        font-family: "Capriola", sans-serif;
+        padding: 20px;
+        box-sizing: border-box;
+        height: 100vh;
+      }
+
+      .center {
+        text-align: center;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 25vh 0 0 0;
+      }
+
+      p {
+        font-size: 24px;
+        margin: 0;
+      }
+
+      hr {
+        border: 0;
+        width: 100%;
+      }
+
+      .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      a.button-reg {
+        border-radius: 25px;
+        font-size: 36px;
+        margin: 0;
+        padding: 10px 20px;
+        background-color: black;
+        color: antiquewhite;
+        text-decoration: none;
+      }
+
+      a.button-exa {
+        border-radius: 25px;
+        font-size: 32px;
+        margin: 0;
+        padding: 10px 20px;
+        border: 5px solid black;
+        color: black;
+        text-decoration: none;
+      }
+
+      .stovonson {
+        text-align: center;
+        font-size: 16px;
+        margin-top: 20px;
+      }
+
+      a {
+        color: black;
+      }
+
+      #container {
+        height: 6vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+        padding: 0 5px;
+        position: relative;
+      }
+
+      #animated-text {
+        font-family: "Capriola", sans-serif;
+        font-size: 5vw;
+        text-align: right;
+        opacity: 1;
+        transition: opacity 0.3s ease-in-out;
+        display: inline-block;
+        white-space: nowrap;
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      #animated-text.fade-out {
+        opacity: 0;
+      }
+
+      #static-text {
+        font-family: "Capriola", sans-serif;
+        font-size: 5vw;
+        text-align: left;
+        position: relative;
+        z-index: 1;
+      }
+
+      @media (max-width: 1200px) {
+        #container {
+            overflow: visible;
+            justify-content: center;
+            padding: 0 2vw;
+        }
+        #animated-text {
+            font-size: 4.5vw;
+        }
+        #static-text {
+            font-size: 4.5vw;
+        }
+      }
+
+      @media (max-width: 850px) {
+        p.tagline {
+            font-size: 28px !important;
+        }
+        p {
+            font-size: 18px;
+        }
+        .buttons {
+            flex-direction: column;
+        }
+        #container {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            flex-direction: column;
+            position: static;
+            justify-content: center;
+            height: auto;
+        }
+        #animated-text {
+            font-size: 8vw;
+            position: static;
+            text-align: center;
+            transform: none;
+        }
+        #static-text {
+            font-size: 8vw;
+            text-align: center;
+        }
+        .center {  
+            padding: 5vh 0 0 0;
+        }
+      }
+
+      @media (max-width: 480px) {
+        p.tagline {
+            font-size: 22px !important;
+        }
+        #animated-text {
+            font-size: 10vw;
+        }
+        #static-text {
+            font-size: 10vw;
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="center">
@@ -26,6 +192,38 @@
       </div>
     </div>
     <p class="stovonson">© 2025 <a href="https://stovonson.in" target="_blank">Stovonson</a></p>
-    <script src="scripts.js"></script>
+    <script>
+      const animatedText = document.getElementById("animated-text");
+      const staticText = document.getElementById("static-text");
+      const container = document.getElementById("container");
+
+      const texts = [
+        "tom",
+        "will",
+        "john",
+        "steve",
+        "jen",
+        "katie",
+        "ryan",
+        "luke"
+      ];
+
+      let currentIndex = 0;
+
+      function updateText() {
+        // Start fade out animation
+        animatedText.classList.add("fade-out");
+
+        setTimeout(() => {
+          currentIndex = (currentIndex + 1) % texts.length;
+          animatedText.textContent = texts[currentIndex];
+          
+          animatedText.classList.remove("fade-out");
+        }, 300);
+      }
+
+      // Start the animation cycle
+      setInterval(updateText, 2500);
+    </script>
   </body>
 </html>
